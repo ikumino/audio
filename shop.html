@@ -222,14 +222,14 @@
 
   <div class="overlay" id="overlay">
     <div class="dialogue-box">
-      <div class="portrait" id="portrait"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAEx0lEQVR4AdSZT6hNURTGtzNQKMq/DLyBDFAMKFGGxABlIsqcDCRlpgwMjJRkIGYGigyRFAMDIgMTwuBl8AzkX1GoR7i/3fvOW2efvc/Z5zrvPeS7a+211l77+/be59wbxeX7o79DPH4+9rsLmL/34NVaH+LC2zdjtTxztA518rGMc1C44M/qxbODyHDDHSsn++DfGR13WNtt14GN7sy5B+5rMceNLF3gXn4Y9z5jeABbH/MrAuyEH2uWx+rLBVgEsKgKN/wcdUBEsYC8tfgCOQERY+8++yG9AZyAD0Y+SgFNRZpHQ/nW3rzyxJ3ct9CGevdT/EoBWhGSgDEW4Odiyao1uaVZdW3rewFSR/HsVYscsN2J27F8HbfGfdmwr9aHJ7DrFGFg/NVHByhCCMAHYWNifYPnINYTEYAcnAV/AgRjQAiI5WKxYa7P+ZNb3IWzd2PtsmKNAmwH+7ax8el4gO16OgXFSgFhQgW5dpjdT/XmGuWeSikgvN/26sz79b1ci8YCu0/i1LVP7sipBxUQb4Ktp049sYybwGYDarwArgeqCYSgId+WkAWHj21zAt+k1HOPQxBvgq2nTj2xrEkMKzAGdqMR4QWQSIGGx49u8Wl87ww+aIQgiAyGf/WXHhC1TfTFyJrA5qzfKoBiToCG4SLkphI5axZcnyYS9v6rTrvP2N5lfGJdwBzAHDYI4OcAHv4EUve/rQlHHwIyoG0uNcDOZ46ui32rQZScwBgw9gJwUuD6kONNg2WHuPv4EAghQuSboDo7n3r6Y4lj29AoQM2amhw9sa+Szl2YSaoNe5AD2jT8FLyAJqI8SOyWGuBv3TzfCc/u3S59ckDENCdmqYn1IEYPITZXN4CcF4ATAlE04S6yGD5Q3aZNa52F4lhbxzgG1dge+LHaplgpAMKpQi2m/J7t69zpcw8rIKZ8rr336EulBz3DPqzNjvPQgrB3KSBM1MfVCI0tqtm8kZ0vP2/mZFVUAKdBw8myf9crOJ4VI3P/XYYtzIr/mTybH71CLaI7pd+/euGEThMninkD6lfvRKhiSgGcBHe/kv3LAcRti3Bsc8P6pYBhG8zUPK7P9Uv7Z/13AiBuN21aBeT8trHkUvef6w74x+GkgD7uKz9DgEjxu0p+HxYRFQEE9CB33a0mQogQmupSud3rl6ZSriKAKkRgAUeInQmwNq9PyN94+i5JoSaASkRw3KCPq0TPLoC8rUcEsDH5UQGvx74p77hKMyECApZ06hRqAiDPztMA4E+nCHafG8Dah47fwnjw+gTK+eDgoyZgEKv9HVYEZGKoLRAE2ESF2HmgcWgrApjItxs7HhYOI4Kf5DGEvTVGLOsDYjzEWGB9xkIpQOSViNlhRMT6xGKQR2yYs89BmGPsBeSQpxhMhQjIs+vLlo/MYg2hjTx1RRfyTAB9ihB5+logSA8xDy8gBl+g2oKgBl1sHyJS5GM8xBMLEAH8FYpNyI3xwEOkUp8xYA5EUqX8ULt4ZqdPYxn7wcQHc0FNgAoh1oaJXt5AyDsZH9SyeEZpa0lNQOuMhgKINaR9KqfGFw4+9P7nWUgJ7lXAYM3yv5nwQ3QhD2Ee3Cby9O9dAE0BZEMQzwVXmS8vgJ+aN2UCUgt2jbd9F/wBAAD//2c+hWgAAAAGSURBVAMAnkQ5VhDioZ4AAAAASUVORK5CYII=" alt="水馬商人"></div>
+      <div class="portrait" id="portrait"><img src="https://emos.plurk.com/500a39cb349bfe05875519f4b4b728a8_w48_h48.png" alt="水馬商人"></div>
       <div class="dialogue-content">
-        <div class="merchant-name">水馬商人</div>
+        <div class="merchant-name">勞倫</div>
         <div class="dialogue-text" id="dialogueText"></div>
         <div class="dialogue-footer">
           <div class="price-tag" id="modalPrice">🪙 0</div>
           <div>
-            <button class="btn btn-leave" id="btnLeave">先看看別的</button>
+            <button class="btn btn-leave" id="btnLeave">看看別的</button>
             <button class="btn btn-buy" id="btnBuy">買下它</button>
           </div>
         </div>
@@ -320,7 +320,7 @@ function normalizeRows(rows){
     desc: (r["介紹"]||"").trim(),
     price: parseInt(r["價格"]) || 0,
     icon: (r["圖示"]||"📦").trim(),
-    dialogue: (r["對話"]||"這東西不錯,你要不要看看?").split("|").map(s=>s.trim())
+    dialogue: (r["對話"]||"……").split("|").map(s=>s.trim())
   }));
 }
 
@@ -331,7 +331,7 @@ async function loadProducts(){
       const csvText = await res.text();
       const parsedRows = parseCSV(csvText);
       PRODUCTS = normalizeRows(parsedRows);
-      document.getElementById("dataSourceNote").textContent = "資料來源：你的 Google 試算表 ✅";
+      document.getElementById("dataSourceNote").textContent = "資料來源： Google 試算表 ✅";
     }catch(e){
       console.error("讀取 Google 試算表失敗，改用示範資料", e);
       PRODUCTS = DEMO_DATA;
@@ -408,7 +408,7 @@ document.getElementById("btnBuy").onclick = ()=>{
   gold -= activeProduct.price;
   document.getElementById("goldCount").textContent = gold;
   activeProduct.sold = true;
-  const farewell = activeProduct.dialogue[1] || "謝謝惠顧,一路順風!";
+  const farewell = activeProduct.dialogue[1] || "謝謝。";
   typeText(farewell);
   showToast(`你買下了「${activeProduct.name}」`);
   document.getElementById("btnBuy").disabled = true;
