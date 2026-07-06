@@ -2,28 +2,29 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>₊˚ ☾. ⋅勞倫a農場商店⋆.˚ ⭒‧</title>
+<title>流浪商人的貨攤</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
 <style>
   :root{
-    --wood-dark:#2B1D14;
-    --leather:#4A3728;
-    --parchment:#EAD9B4;
-    --brass:#C9A227;
-    --ember:#B5451D;
-    --moss:#5C7346;
-    --ink:#1A120B;
+    --wood-dark:#0A0F16;
+    --leather:#223142;
+    --parchment:#E9EEF3;
+    --brass:#B9C9D6;
+    --ember:#3E6C8C;
+    --moss:#35566E;
+    --ink:#0B0E12;
   }
   *{box-sizing:border-box;}
   body{
     margin:0;
     min-height:100vh;
     background:
-      repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 40px),
-      linear-gradient(180deg, var(--wood-dark), #1c130c);
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 60px),
+      radial-gradient(ellipse at 50% -10%, rgba(210,225,238,0.10), transparent 55%),
+      linear-gradient(180deg, var(--wood-dark), #05080C);
     color:var(--parchment);
     font-family:'Crimson Pro', serif;
   }
@@ -32,7 +33,7 @@
   .shop-header{
     display:flex; align-items:center; justify-content:space-between;
     padding:22px 28px;
-    background:linear-gradient(180deg, var(--leather), #3a2b1f);
+    background:linear-gradient(180deg, var(--leather), #16212C);
     border-bottom:4px solid var(--brass);
     box-shadow:0 6px 14px rgba(0,0,0,0.45);
   }
@@ -69,7 +70,7 @@
     padding:9px 18px 11px;
     background:var(--leather);
     color:var(--parchment);
-    border:2px solid #6b5136;
+    border:2px solid #35485A;
     border-bottom:none;
     border-radius:8px 8px 0 0;
     cursor:pointer;
@@ -92,7 +93,7 @@
     grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
     gap:18px;
     background:linear-gradient(180deg, rgba(0,0,0,0.15), transparent);
-    border-top:6px solid #6b5136;
+    border-top:6px solid #35485A;
   }
   .item-card{
     background:var(--parchment);
@@ -101,7 +102,7 @@
     padding:14px;
     cursor:pointer;
     position:relative;
-    box-shadow:0 6px 0 #7a5c3a, 0 8px 14px rgba(0,0,0,0.4);
+    box-shadow:0 6px 0 #0D141C, 0 8px 14px rgba(0,0,0,0.45);
     transition:transform .12s;
   }
   .item-card:hover{ transform:translateY(-4px); }
@@ -156,6 +157,10 @@
     background:var(--leather);
     display:flex; align-items:center; justify-content:center;
     font-size:46px; border:3px solid var(--brass);
+    overflow:hidden;
+  }
+  .portrait img{
+    width:100%; height:100%; object-fit:cover; display:block;
   }
   .dialogue-content{ flex:1; min-width:0; }
   .merchant-name{
@@ -208,7 +213,7 @@
       <div class="shop-title">⚔️ 流浪商人的貨攤</div>
       <div class="shop-sub">「稀奇玩意兒，全宇宙都找不到第二家。」</div>
     </div>
-    <div class="gold-counter">🪙 <span id="goldCount">1000</span> 金幣</div>
+    <div class="gold-counter">🪙 <span id="goldCount">100</span> 金幣</div>
   </div>
 
   <div class="tabs" id="tabs"></div>
@@ -217,9 +222,9 @@
 
   <div class="overlay" id="overlay">
     <div class="dialogue-box">
-      <div class="portrait" id="portrait">🧙</div>
+      <div class="portrait" id="portrait"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAEx0lEQVR4AdSZT6hNURTGtzNQKMq/DLyBDFAMKFGGxABlIsqcDCRlpgwMjJRkIGYGigyRFAMDIgMTwuBl8AzkX1GoR7i/3fvOW2efvc/Z5zrvPeS7a+211l77+/be59wbxeX7o79DPH4+9rsLmL/34NVaH+LC2zdjtTxztA518rGMc1C44M/qxbODyHDDHSsn++DfGR13WNtt14GN7sy5B+5rMceNLF3gXn4Y9z5jeABbH/MrAuyEH2uWx+rLBVgEsKgKN/wcdUBEsYC8tfgCOQERY+8++yG9AZyAD0Y+SgFNRZpHQ/nW3rzyxJ3ct9CGevdT/EoBWhGSgDEW4Odiyao1uaVZdW3rewFSR/HsVYscsN2J27F8HbfGfdmwr9aHJ7DrFGFg/NVHByhCCMAHYWNifYPnINYTEYAcnAV/AgRjQAiI5WKxYa7P+ZNb3IWzd2PtsmKNAmwH+7ax8el4gO16OgXFSgFhQgW5dpjdT/XmGuWeSikgvN/26sz79b1ci8YCu0/i1LVP7sipBxUQb4Ktp049sYybwGYDarwArgeqCYSgId+WkAWHj21zAt+k1HOPQxBvgq2nTj2xrEkMKzAGdqMR4QWQSIGGx49u8Wl87ww+aIQgiAyGf/WXHhC1TfTFyJrA5qzfKoBiToCG4SLkphI5axZcnyYS9v6rTrvP2N5lfGJdwBzAHDYI4OcAHv4EUve/rQlHHwIyoG0uNcDOZ46ui32rQZScwBgw9gJwUuD6kONNg2WHuPv4EAghQuSboDo7n3r6Y4lj29AoQM2amhw9sa+Szl2YSaoNe5AD2jT8FLyAJqI8SOyWGuBv3TzfCc/u3S59ckDENCdmqYn1IEYPITZXN4CcF4ATAlE04S6yGD5Q3aZNa52F4lhbxzgG1dge+LHaplgpAMKpQi2m/J7t69zpcw8rIKZ8rr336EulBz3DPqzNjvPQgrB3KSBM1MfVCI0tqtm8kZ0vP2/mZFVUAKdBw8myf9crOJ4VI3P/XYYtzIr/mTybH71CLaI7pd+/euGEThMninkD6lfvRKhiSgGcBHe/kv3LAcRti3Bsc8P6pYBhG8zUPK7P9Uv7Z/13AiBuN21aBeT8trHkUvef6w74x+GkgD7uKz9DgEjxu0p+HxYRFQEE9CB33a0mQogQmupSud3rl6ZSriKAKkRgAUeInQmwNq9PyN94+i5JoSaASkRw3KCPq0TPLoC8rUcEsDH5UQGvx74p77hKMyECApZ06hRqAiDPztMA4E+nCHafG8Dah47fwnjw+gTK+eDgoyZgEKv9HVYEZGKoLRAE2ESF2HmgcWgrApjItxs7HhYOI4Kf5DGEvTVGLOsDYjzEWGB9xkIpQOSViNlhRMT6xGKQR2yYs89BmGPsBeSQpxhMhQjIs+vLlo/MYg2hjTx1RRfyTAB9ihB5+logSA8xDy8gBl+g2oKgBl1sHyJS5GM8xBMLEAH8FYpNyI3xwEOkUp8xYA5EUqX8ULt4ZqdPYxn7wcQHc0FNgAoh1oaJXt5AyDsZH9SyeEZpa0lNQOuMhgKINaR9KqfGFw4+9P7nWUgJ7lXAYM3yv5nwQ3QhD2Ee3Cby9O9dAE0BZEMQzwVXmS8vgJ+aN2UCUgt2jbd9F/wBAAD//2c+hWgAAAAGSURBVAMAnkQ5VhDioZ4AAAAASUVORK5CYII=" alt="水馬商人"></div>
       <div class="dialogue-content">
-        <div class="merchant-name">勞倫</div>
+        <div class="merchant-name">水馬商人</div>
         <div class="dialogue-text" id="dialogueText"></div>
         <div class="dialogue-footer">
           <div class="price-tag" id="modalPrice">🪙 0</div>
@@ -275,6 +280,39 @@ let gold = 100;
 let activeProduct = null;
 let typingTimer = null;
 
+// 自己寫的 CSV 解析器（不依賴外部程式庫，處理欄位裡有逗號/換行/引號的情況）
+function parseCSV(str){
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  str = str.replace(/\r\n/g, '\n');
+  for(let i=0; i<str.length; i++){
+    const c = str[i];
+    if(inQuotes){
+      if(c === '"'){
+        if(str[i+1] === '"'){ field += '"'; i++; }
+        else { inQuotes = false; }
+      } else {
+        field += c;
+      }
+    } else {
+      if(c === '"'){ inQuotes = true; }
+      else if(c === ','){ row.push(field); field = ''; }
+      else if(c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+      else { field += c; }
+    }
+  }
+  if(field.length > 0 || row.length > 0){ row.push(field); rows.push(row); }
+  if(rows.length === 0) return [];
+  const headers = rows[0].map(h => h.trim());
+  return rows.slice(1)
+    .filter(r => r.some(cell => cell.trim() !== ''))
+    .map(r => {
+      const obj = {};
+      headers.forEach((h, idx) => { obj[h] = (r[idx] !== undefined ? r[idx] : '').trim(); });
+      return obj;
+    });
+}
+
 function normalizeRows(rows){
   return rows.map(r => ({
     category: (r["分類"]||"未分類").trim(),
@@ -291,8 +329,8 @@ async function loadProducts(){
     try{
       const res = await fetch(SHEET_CSV_URL);
       const csvText = await res.text();
-      const parsed = Papa.parse(csvText, {header:true, skipEmptyLines:true});
-      PRODUCTS = normalizeRows(parsed.data);
+      const parsedRows = parseCSV(csvText);
+      PRODUCTS = normalizeRows(parsedRows);
       document.getElementById("dataSourceNote").textContent = "資料來源：你的 Google 試算表 ✅";
     }catch(e){
       console.error("讀取 Google 試算表失敗，改用示範資料", e);
